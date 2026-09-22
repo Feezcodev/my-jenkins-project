@@ -1,4 +1,4 @@
-pipeline {
+\pipeline {
     agent any
     stages {
         stage('Build') {
@@ -19,6 +19,19 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh 'docker build -t my-jenkins-app:latest .'
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                  usernameVariable: 'DOCKER_USER', 
+                                                  passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker tag my-jenkins-app:latest $DOCKER_USER/my-jenkins-app:latest
+                        docker push $DOCKER_USER/my-jenkins-app:latest
+                    '''
+                }
             }
         }
         stage('Deploy / Artifact') {
