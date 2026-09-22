@@ -28,4 +28,15 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed! Check the console output for details.'
+        }
+        always {
+            echo 'Pipeline run completed.'
+        }
+    }
 }
