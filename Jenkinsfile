@@ -3,6 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo 'Installing dependencies...'
+                sh 'npm install'
                 echo 'Building application artifacts...'
                 sh 'echo "App built successfully" > build_output.txt'
             }
@@ -10,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running automated tests...'
-                sh 'cat build_output.txt'
+                sh 'npm test'
             }
         }
         stage('Docker Build') {
