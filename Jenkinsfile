@@ -1,4 +1,5 @@
-\pipeline {
+cat << 'EOF' > Jenkinsfile
+pipeline {
     agent any
     stages {
         stage('Build') {
@@ -53,3 +54,4 @@
         }
     }
 }
+EOF
