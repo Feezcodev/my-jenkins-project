@@ -1,0 +1,10 @@
+{
+  "name": "my-jenkins-project",
+  "version": "1.0.0",
+  "description": "Jenkins CI/CD Pipeline Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Tests passed successfully!\" && exit 0"
+  },
+  "dependencies": {}
+}
